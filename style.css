@@ -1,0 +1,132 @@
+/* نسخة محسنة ومتجاوبة */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9fafb;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 31.25rem;
+  margin: 2.50rem auto;
+  background-color: #fff;
+  padding: 1.88rem;
+  border-radius: 1.00rem;
+  box-shadow: 0 0.25rem 1.00rem rgba(0,0,0,0.1);
+}
+
+h2, h3 {
+  text-align: center;
+  margin-bottom: 1.56rem;
+  color: #222;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.00rem;
+}
+
+label {
+  font-weight: bold;
+  color: #555;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="number"],
+input[type="email"],
+input[type="file"] {
+  padding: 0.75rem;
+  border: 0.06rem solid #ddd;
+  border-radius: 0.62rem;
+  font-size: 1.00rem;
+  transition: border 0.3s;
+}
+
+input:focus {
+  border-color: #4caf50;
+  outline: none;
+}
+
+button {
+  padding: 0.88rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 0.62rem;
+  font-size: 1.06rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #3e8e41;
+}
+
+#trustWallet {
+  text-align: center;
+  margin-top: 1.88rem;
+}
+
+#trustWallet img {
+  width: 10.00rem;
+  height: 10.00rem;
+  border-radius: 0.75rem;
+  border: 0.06rem solid #ccc;
+}
+
+#result {
+  margin-top: 1.88rem;
+  text-align: center;
+}
+
+@media (max-width: 37.50rem) {
+  .container {
+    margin: 1.25rem;
+    padding: 1.25rem;
+  }
+
+  input, button {
+    font-size: 0.94rem;
+  }
+
+  #trustWallet img {
+    width: 8.75rem;
+    height: 8.75rem;
+  }
+}
+
+.back-button {
+    background-color: #005eb8;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
+}
+.back-button:hover {
+    background-color: #004b94;
+    transform: translateY(-2px);
+}
+
+.success-alert {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: bold;
+    display: none;
+}

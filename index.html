@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8"/>
+<title>شام ترون - الصفحة الرئيسية</title>
+<link href="style.css" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        .logo {
+            margin-top: 50px;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translatey(0px); }
+            50% { transform: translatey(-20px); }
+            100% { transform: translatey(0px); }
+        }
+        h1 {
+            color: #003366;
+            margin-top: 30px;
+        }
+        p {
+            font-size: 18px;
+            color: #333;
+            margin: 20px;
+        }
+        .enter-button {
+            padding: 12px 30px;
+            font-size: 18px;
+            background-color: #005eb8;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .enter-button:hover {
+            background-color: #004b94;
+        }
+    </style>
+</head>
+<body>
+<img alt="ShamTron Logo" class="logo" src="shamtron-logo.png" width="220"/>
+<h1>مرحباً بك في شام ترون</h1><h3 style="color:#555; margin-top:-10px;">Sham Tron</h3>
+<p>نقدّم لك خدمة موثوقة لتحويل USDT بسهولة وسرعة، مع ضمان أمان معلوماتك وسرعة في تسليم حوالتك.</p>
+<button class="enter-button" onclick="location.href='register.html'">الدخول</button>
+<div id="tips-section" style="margin: 40px auto; max-width: 700px; text-align: right;">
+<h2 style="color:#005eb8;">🔔 توصيات مهمة لاستخدام التطبيق:</h2>
+<ul style="line-height: 1.8; color: #333; font-size: 16px;">
+<li><strong>1.</strong> أنشئ حسابًا أو استخدم خيار التسجيل كزائر لتجربة الخدمة بسرعة.</li>
+<li><strong>2.</strong> بعد الدخول، توجه إلى صفحة تحويل USDT واملأ البيانات المطلوبة بدقة.</li>
+<li><strong>3.</strong> أرفق صورة وصل التحويل بوضوح لإتمام المعاملة بنجاح.</li>
+<li><strong>4.</strong> بعد التحويل، انتقل لصفحة إدخال بيانات المستلم في بنك شام كاش.</li>
+<li><strong>5.</strong> سيتم إرسال الأموال إلى المستلم عبر بنك شام كاش خلال 15 دقيقة كحد أقصى، مع اقتطاع نسبة 5٪ من مبلغ الحوالة كرسوم تحويل.<br>💬 لطرق الدفع الأخرى أو الاستفسار، يرجى التواصل عبر واتساب: <a href="https://wa.me/963957403172" target="_blank">+963957403172</a>.</li>
+</ul>
+<button onclick="this.parentElement.style.display='none'" style="margin-top: 10px; background-color: #ccc; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer;">إخفاء التوصيات</button>
+</div>
+<div id="disclaimer" style="background-color: #fff3cd; padding: 20px; border: 1px solid #ffeeba; border-radius: 10px; color: #856404; max-width: 700px; margin: 40px auto; font-size: 15px;">
+<strong>⚠️ إخلاء مسؤولية:</strong>
+<p style="margin-top: 10px;">
+        التطبيق غير مسؤول عن ضياع الأموال في حال تم التحويل إلى عنوان خاطئ أو تنفيذ عملية التحويل أكثر من مرة. 
+        يرجى التأكد من صحة البيانات قبل الإرسال، حيث لا يمكن استرجاع المبالغ بعد تحويلها.
+    </p>
+</div>
+<!-- Disclaimer Popup -->
+<div id="disclaimerPopup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.6); z-index:1000; justify-content:center; align-items:center;">
+<div style="background:#fff; padding:30px; border-radius:10px; max-width:400px; text-align:center;">
+<h3 style="color:#c0392b;">⚠️ تنبيه هام</h3>
+<p style="font-size:14px; color:#333;">
+      التطبيق غير مسؤول عن ضياع الأموال في حال تم التحويل إلى عنوان خاطئ أو تنفيذ عملية التحويل أكثر من مرة. تأكد من صحة العنوان والمبلغ قبل الإرسال.
+    </p>
+<button onclick="document.getElementById('disclaimerPopup').style.display='none'" style="margin-top:15px; padding:10px 20px; background:#28a745; border:none; color:#fff; border-radius:5px;">موافق</button>
+</div>
+</div>
+<script>
+  window.onload = function() {
+    document.getElementById("disclaimerPopup").style.display = "flex";
+  };
+</script>
+
+<footer style="text-align: center; margin-top: 50px; font-size: 14px; color: gray;">
+    &copy; 2025 ShamTron. جميع الحقوق محفوظة.
+</footer>
+
+
+<!-- WhatsApp Floating Icon -->
+<a href="https://wa.me/963957403172" target="_blank" 
+   style="position: fixed; bottom: 20px; left: 20px; z-index: 1000;">
+    <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" 
+         alt="WhatsApp" style="width: 55px; height: 55px;">
+</a>
+</body>
+
+</html>

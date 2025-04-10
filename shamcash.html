@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8"/>
+<title>معلومات المستلم من بنك شام كاش</title>
+<link href="style.css" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #eef1f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .form-container {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 430px;
+            text-align: center;
+        }
+        input[type="text"], input[type="file"], input[readonly] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+        .submit-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body style=" background-color: white; color: #333;">
+<div class="form-container">
+<h2>معلومات المستلم من بنك شام كاش</h2>
+<form id="shamcashForm">
+<label>الاسم الكامل للمستلم</label><input id="recipientName" placeholder="الاسم الكامل للمستلم" required="" type="text"/>
+
+<input type="hidden" id="finalAmount"/>
+<label style="display:block; margin-bottom:5px; font-size:14px; color:#444;">يرجى إرفاق صورة باركود المستلم من بنك شام كاش</label>
+<input accept="image/*" id="barcodeImage" required="" type="file"/>
+<div id="successMessage" class="success-alert">✅ تم إرسال المعلومات بنجاح!</div>
+<button class="submit-btn" style=" background-color: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px;" type="submit">إرسال المعلومات
+    <div style="text-align: center; margin-top: 20px;">
+        <button onclick="history.back()" class="back-button">⬅️ العودة</button>
+    </div>
+</form>
+</div>
+
+
+<script>
+window.onload = function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const amount = parseFloat(urlParams.get('amount'));
+
+  if (!isNaN(amount)) {
+    const discounted = (amount * 0.95).toFixed(2);
+    document.getElementById('finalAmount').value = discounted;
+  }
+};
+
+const BOT_TOKEN = "7441650546:AAEP9_xSxetsw3oQ9-9vrArWQvrC8CxqLaU";
+const CHAT_ID = "361491903";
+
+async function sendToTelegram(message, imageFile = null) {
+  const formData = new FormData();
+  formData.append("chat_id", CHAT_ID);
+  formData.append("caption", message);
+  formData.append("photo", imageFile);
+
+  await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+    method: "POST",
+    body: formData,
+  });
+}
+
+document.getElementById("shamcashForm").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const name = document.getElementById("recipientName").value.trim();
+  const amountFinal = document.getElementById("finalAmount").value;
+  const imageFile = document.getElementById("barcodeImage").files[0];
+
+  if (!name || !imageFile || isNaN(parseFloat(amountFinal)) || amountFinal === "0.00") {
+    alert("يرجى تعبئة كل الحقول وإرفاق صورة.");
+    return;
+  }
+
+  const message = `🏦 معلومات مستلم شام كاش:
+
+👤 الاسم: ${name}
+💵 المبلغ بعد خصم 5٪: ${amountFinal} USDT`;
+
+  await sendToTelegram(message, imageFile);
+  document.getElementById("successMessage").style.display = "block";
+
+  document.getElementById("shamcashForm").style.display = "none";
+  alert("✅ تم إرسال المعلومات بنجاح!");
+});
+</script>
+</body>
+</html>
+
